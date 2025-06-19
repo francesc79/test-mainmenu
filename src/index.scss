@@ -1,0 +1,20 @@
+
+
+
+html, 
+body, 
+#root  {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.fx4-main-menu * {
+  pointer-events: auto !important;
+  user-select: auto !important;
+}
+
+
