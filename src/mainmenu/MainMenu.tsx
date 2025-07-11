@@ -113,17 +113,19 @@ export const MainMenu = (props: MainMenuProps) => {
       });
     });
 
-  const canDropForeignDragObject = (dataTransfer: DataTransfer, target: DragTarget<MainMenuTreeItemType>) =>{
+  const canDropForeignDragObject = (dataTransfer: DataTransfer) =>{
           const json = dataTransfer.getData('text/plain');
       if (!json) {
         return true;
       }
 
       const data = JSON.parse(dataTransfer.getData('text/plain'));
+      if(data.icon === 'tree'){
+        return false;
+      }
 
-      console.log('canDropForeignDragObject', data, target);
 
-      return false;
+      return true;
   };
 
   const tree = useTree<MainMenuTreeItemType>({
@@ -162,6 +164,7 @@ export const MainMenu = (props: MainMenuProps) => {
     }),
     [tree],
   );
+
 
   return (
     <section className={cx('fx4-mainmenu', className, css.mainMenu)}>
