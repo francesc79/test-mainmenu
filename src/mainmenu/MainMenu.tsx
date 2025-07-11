@@ -113,7 +113,18 @@ export const MainMenu = (props: MainMenuProps) => {
       });
     });
 
-  const canDropForeignDragObject = (dataTransfer: DataTransfer, target: DragTarget<MainMenuTreeItemType>) => true;
+  const canDropForeignDragObject = (dataTransfer: DataTransfer, target: DragTarget<MainMenuTreeItemType>) =>{
+          const json = dataTransfer.getData('text/plain');
+      if (!json) {
+        return true;
+      }
+
+      const data = JSON.parse(dataTransfer.getData('text/plain'));
+
+      console.log('canDropForeignDragObject', data, target);
+
+      return false;
+  };
 
   const tree = useTree<MainMenuTreeItemType>({
     state,
